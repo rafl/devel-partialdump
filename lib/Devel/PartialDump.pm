@@ -408,15 +408,15 @@ dependency.
 
 =item C<< "foo" => "bar" >>
 
-    foo => "bar"
+    foo: "bar"
 
 =item C<< foo => "bar", gorch => [ 1, "bah" ] >>
 
-    foo => "bar", gorch => [ 1, "bah" ]
+    foo: "bar", gorch: [ 1, "bah" ]
 
 =item C<< [ { foo => ["bar"] } ] >>
 
-    [ { foo => ARRAY(0x9b265d0) } ]
+    [ { foo: ARRAY(0x9b265d0) } ]
 
 =item C<< [ 1 .. 10 ] >>
 
