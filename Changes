@@ -1,40 +1,47 @@
-0.12
+0.13
+    - Merge NUFFIN/Devel-PartialDump-0.12.tar.gz and
+      FLORA/Devel-PartialDump-0.12.tar.gz.
+
+0.12 (NUFFIN)
+    - no more Any::Moose
+
+0.12 (FLORA)
     - Update example output in the docs with the JSON-like format
 
 0.11
-	- unbreak tests
+    - unbreak tests
 
 0.10
-	- Make formatting configurable, and change to resemble JSON by default
+    - Make formatting configurable, and change to resemble JSON by default
 
 0.09
     - Add some example output to the documentation
     - Update version control notice
 
 0.08
-	- Switch to Any::Moose (rafl)
+    - Switch to Any::Moose (rafl)
 
 0.07
-	- Skip tests if Test::Warn is not installed
+    - Skip tests if Test::Warn is not installed
 
 0.06
-	- add override_carp import option, which replaces Carp's argument
-	  formatting with Devel::PartialDump::dump
+    - add override_carp import option, which replaces Carp's argument
+      formatting with Devel::PartialDump::dump
 
 0.05
-	- Ugh... another dep fix
+    - Ugh... another dep fix
 
 0.04
-	- Fix bad deps
+    - Fix bad deps
 
 0.03
-	- use Mouse & Sub::Exporter
-	- optional Carp replacement exports
+    - use Mouse & Sub::Exporter
+    - optional Carp replacement exports
 
 0.02
-	- fixed DESCRIPTION, which just trailed off mid sentance
-	- Add the C<warn> method
-	- Add optional exports
+    - fixed DESCRIPTION, which just trailed off mid sentance
+    - Add the C<warn> method
+    - Add optional exports
 
 0.01
-	- Initial release
+    - Initial release
