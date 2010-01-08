@@ -1,6 +1,7 @@
 0.13
     - Merge NUFFIN/Devel-PartialDump-0.12.tar.gz and
       FLORA/Devel-PartialDump-0.12.tar.gz.
+    - Add Test::Warn to PREREQ_PM - patch by Ranguard
 
 0.12 (NUFFIN)
     - no more Any::Moose

@@ -11,6 +11,7 @@ WriteMakefile(
 	SIGN         => 1,
 	PL_FILES     => { },
 	PREREQ_PM    => {
+		'Test::Warn' => 0.21,
 		'Test::use::ok' => 0,
 		'Moose' => 0,
 		'Scalar::Util' => 0,
