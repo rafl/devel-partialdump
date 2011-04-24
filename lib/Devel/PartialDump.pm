@@ -275,7 +275,9 @@ sub format_ref {
 		return overload::StrVal($ref);
 	} else {
 		my $reftype = reftype($ref);
-		my $method = "format_" . lc reftype $ref;
+                $reftype = 'SCALAR'
+                    if $reftype eq 'REF' || $reftype eq 'LVALUE';
+		my $method = "format_" . lc $reftype;
 
 		if ( $self->can($method) ) {
 			return $self->$method( $depth, $ref );

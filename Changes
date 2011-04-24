@@ -1,3 +1,7 @@
+0.14
+    - Don't go into an infinite loop when dumping references to references.
+      Also, dump LVALUE references properly. (doy)
+
 0.13
     - Merge NUFFIN/Devel-PartialDump-0.12.tar.gz and
       FLORA/Devel-PartialDump-0.12.tar.gz.
