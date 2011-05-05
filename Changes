@@ -1,3 +1,6 @@
+0.15
+    - Bump dependency on namespace::clean to 0.20, as requested by doy++.
+
 0.14
     - Don't go into an infinite loop when dumping references to references.
       Also, dump LVALUE references properly. (doy)
