@@ -619,7 +619,7 @@ has been reached.
 =head1 VERSION CONTROL
 
 This module is maintained using git. You can get the latest version from
-L<http://github.com/nothingmuch/devel-partialdump>.
+L<http://github.com/rafl/devel-partialdump>.
 
 =head1 AUTHOR
 
