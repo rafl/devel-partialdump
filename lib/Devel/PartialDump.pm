@@ -594,7 +594,7 @@ Dump as pairs returns comma delimited pairs with C<< => >> between the key and t
 
 Dump as list returns a comma delimited dump of the values.
 
-=item frmat $depth, $value
+=item format $depth, $value
 
 =item format_key $depth, $key
 
