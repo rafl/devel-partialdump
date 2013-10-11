@@ -11,7 +11,11 @@ my $d = Devel::PartialDump->new;
 
 is( $d->dump("foo"), '"foo"', "simple value" );
 
+is( $d->dump(undef), "undef", "undef" );
+
 is( $d->dump("foo" => "bar"), 'foo: "bar"', "named params" );
+
+is( $d->dump( \"foo" => "bar" ), '\\"foo", "bar"', "not named params" );
 
 is( $d->dump( foo => "bar", gorch => [ 1, "bah" ] ), 'foo: "bar", gorch: [ 1, "bah" ]', "recursion" );
 
