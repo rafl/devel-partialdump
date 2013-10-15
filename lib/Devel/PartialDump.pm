@@ -185,10 +185,10 @@ sub dump {
 
 	my $dump = $self->$method(1, @args);
 
-	if ( $self->has_max_length ) {
-		if ( length($dump) > $self->max_length ) {
-			$dump = substr($dump, 0, $self->max_length - 3) . "...";
-		}
+	if ( $self->has_max_length and length($dump) > $self->max_length ) {
+		my $max_length = $self->max_length - 3;
+		$max_length = 0 if $max_length < 0;
+		substr( $dump, $max_length, length($dump) - $max_length, '...' );
 	}
 
 	if ( not defined wantarray ) {
@@ -221,14 +221,14 @@ sub dump_as_pairs {
 		@what = splice(@what, 0, $self->max_elements * 2 );
 	}
 
-	return join($self->list_delim, $self->_dump_as_pairs($depth, @what), ($truncated ? "..." : ()) );
+	return join( $self->list_delim, $self->_dump_as_pairs($depth, @what), ($truncated ? "..." : ()) );
 }
 
 sub _dump_as_pairs {
 	my ( $self, $depth, @what ) = @_;
 
 	return unless @what;
-	
+
 	my ( $key, $value, @rest ) = @what;
 
 	return (
@@ -246,7 +246,7 @@ sub dump_as_list {
 		@what = splice(@what, 0, $self->max_elements );
 	}
 
-	return join( ", ", ( map { $self->format($depth, $_) } @what ), ($truncated ? "..." : ()) );
+	return join( $self->list_delim, ( map { $self->format($depth, $_) } @what ), ($truncated ? "..." : ()) );
 }
 
 sub format {
@@ -291,6 +291,7 @@ sub format_array {
 	my ( $self, $depth, $array ) = @_;
 
 	my $class = blessed($array) || '';
+	$class .= "=" if $class;
 
 	return $class . "[ " . $self->dump_as_list($depth + 1, @$array) . " ]";
 }
@@ -299,6 +300,7 @@ sub format_hash {
 	my ( $self, $depth, $hash ) = @_;
 
 	my $class = blessed($hash) || '';
+	$class .= "=" if $class;
 
 	return $class . "{ " . $self->dump_as_pairs($depth + 1, map { $_ => $hash->{$_} } sort keys %$hash) . " }";
 }
