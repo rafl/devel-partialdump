@@ -1,8 +1,6 @@
 #!/usr/bin/perl
 
 package Devel::PartialDump;
-use Moose;
-
 use Carp ();
 use Scalar::Util qw(looks_like_number reftype blessed);
 
@@ -48,59 +46,72 @@ sub replacement_caller_info {
 	return wantarray() ? %call_info : \%call_info;
 }
 
+sub new {
+    my $class = shift;
+    my %args = @_ == 1 ? %{ $_[0] } : @_;
 
-has max_length => (
-	isa => "Int",
-	is  => "rw",
-	predicate => "has_max_length",
-	clearer => "clear_max_length",
-);
+    $args{max_elements} = 6    if !exists($args{max_elements});
+    $args{max_depth}    = 2    if !exists($args{max_depth});
+    $args{stringify}    = 0    if !exists($args{stringify});
+    $args{pairs}        = 1    if !exists($args{pairs});
+    $args{objects}      = 1    if !exists($args{objects});
+    $args{list_delim}   = ", " if !exists($args{list_delim});
+    $args{pair_delim}   = ": " if !exists($args{pair_delim});
 
-has max_elements => (
-	isa => "Int",
-	is  => "rw",
-	default => 6,
-	predicate => "has_max_elements",
-	clearer => "clear_max_elements",
-);
+    return bless \%args, $class;
+}
 
-has max_depth => (
-	isa => "Int",
-	is  => "rw",
-	required => 1,
-	default => 2,
-);
+sub max_length {
+    my $self = shift;
+    return $self->{max_length} if !@_;
+    $self->{max_length} = shift;
+}
+sub has_max_length   { exists shift->{max_length} }
+sub clear_max_length { delete shift->{max_length} }
 
-has stringify => (
-	isa => "Bool",
-	is  => "rw",
-	default => 0,
-);
+sub max_elements {
+    my $self = shift;
+    return $self->{max_elements} if !@_;
+    $self->{max_elements} = shift;
+}
+sub has_max_elements   { exists shift->{max_elements} }
+sub clear_max_elements { delete shift->{max_elements} }
 
-has pairs => (
-	isa => "Bool",
-	is  => "rw",
-	default => 1,
-);
+sub max_depth {
+    my $self = shift;
+    return $self->{max_depth} if !@_;
+    $self->{max_depth} = shift;
+}
 
-has objects => (
-	isa => "Bool",
-	is  => "rw",
-	default => 1,
-);
+sub stringify {
+    my $self = shift;
+    return $self->{stringify} if !@_;
+    $self->{stringify} = shift;
+}
 
-has list_delim => (
-	isa => "Str",
-	default => ", ",
-	is => "rw",
-);
+sub pairs {
+    my $self = shift;
+    return $self->{pairs} if !@_;
+    $self->{pairs} = shift;
+}
 
-has pair_delim => (
-	isa => "Str",
-	#default => " => ",
-	default => ": ",
-	is => "rw",
-);
+sub objects {
+    my $self = shift;
+    return $self->{objects} if !@_;
+    $self->{objects} = shift;
+}
+
+sub list_delim {
+    my $self = shift;
+    return $self->{list_delim} if !@_;
+    $self->{list_delim} = shift;
+}
+
+sub pair_delim {
+    my $self = shift;
+    return $self->{pair_delim} if !@_;
+    $self->{pair_delim} = shift;
+}
 
 sub warn_str {
 	my ( @args ) = @_;
@@ -583,7 +594,7 @@ Dump as pairs returns comma delimited pairs with C<< => >> between the key and t
 
 Dump as list returns a comma delimited dump of the values.
 
-=item frmat $depth, $value
+=item format $depth, $value
 
 =item format_key $depth, $key
 
